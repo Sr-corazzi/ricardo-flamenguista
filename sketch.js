@@ -104,7 +104,7 @@ CjBaianoRebaixado();
 
 pedroPalmeirense.y=ricardoFlamenguista.y;
 
-if(keyDown("k")){salvamentos++;}
+//if(keyDown("k")){salvamentos++;}
 
 
 
