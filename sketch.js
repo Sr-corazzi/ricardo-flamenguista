@@ -91,7 +91,7 @@ if(pedroPalmeirense.isTouching(gRocha)){
 
 stroke("white");
 fill("yellow");
-textSize(width/60);
+textSize(width/25);
  text(vidas,width/20,height-height/20);
 
   if(frameCount%80==0){
@@ -146,7 +146,7 @@ if(vidas==0&&salvamentos==0){
 }
 if(estado==2){
   fill("red");
-  textSize(width/60);
+  textSize(width/25);
   text("você morreu",width/2,height/2);
   morte();
 }
@@ -159,7 +159,7 @@ if(estado==2){
 
 
 
-textSize(width/60);
+textSize(width/25);
 fill("red");
 text(salvamentos,width/20,height/20)
 drawSprites();
