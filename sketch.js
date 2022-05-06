@@ -91,7 +91,7 @@ if(pedroPalmeirense.isTouching(gRocha)){
 
 stroke("white");
 fill("yellow");
-textSize(25);
+textSize(width/60);
  text(vidas,width/20,height-height/20);
 
   if(frameCount%80==0){
@@ -146,7 +146,7 @@ if(vidas==0&&salvamentos==0){
 }
 if(estado==2){
   fill("red");
-  textSize(25);
+  textSize(width/60);
   text("você morreu",width/2,height/2);
   morte();
 }
@@ -159,7 +159,7 @@ if(estado==2){
 
 
 
-textSize(25);
+textSize(width/60);
 fill("red");
 text(salvamentos,width/20,height/20)
 drawSprites();
@@ -169,7 +169,7 @@ function CjBaianoRebaixado(){
   
 cjBaianoRebaixado=createSprite(width*1.2,height/(random(1,23)/10));
 cjBaianoRebaixado.addImage(cjBaianoRebaixadoImg);
-
+cjBaianoRebaixado.scale=width/2000;
 
 cjBaianoRebaixado.x=width*1.2;
 cjBaianoRebaixado.x=cjBaianoRebaixado.x-width/40;
