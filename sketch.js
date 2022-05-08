@@ -1,4 +1,4 @@
-var bg, pedroPalmeirense, ricardoFlamenguista,cjBaianoRebaixado,bispo, pedroPalmeirenseImg, ricardoFlamenguistaImg,cjBaianoRebaixadoImg,bispoImg,veioDaHavanSuperHeroiImg,bispoSom,gCjBaianoRebaixado, pedra,pedraImg,gPedra,rocha,gRocha,velorioSom,vitoriaSom;
+var bg, pedroPalmeirense, ricardoFlamenguista,cjBaianoRebaixado,bispo, pedroPalmeirenseImg, ricardoFlamenguistaImg,cjBaianoRebaixadoImg,bispoImg,veioDaHavanSuperHeroiImg,bispoSom,gCjBaianoRebaixado, pedra,pedraImg,gPedra,rocha,gRocha,velorioSom,vitoriaSom,flamengoSom;
 var vidas = 3;
 var salvamentos=0;
 var estado=0;
@@ -14,8 +14,8 @@ bg=loadImage("IMG_5180 (1).JPG");
 bispoSom=loadSound("bispo.mp3");
 pedraImg=loadImage("pedra.png")
 velorioSom=loadSound("velorio.mp3");
-vitoriaSom=loadSound("vitoria.mp3")
-
+vitoriaSom=loadSound("vitoria.mp3");
+flamengoSom=loadSound("comemorar.mp3");
 }
 
 function setup() {
@@ -54,7 +54,7 @@ function draw(){
 
   
 
-if(estado<3){
+if(estado<1){
   fill("white");
   rect(width-(width/3.7),pedroPalmeirense.y-height/10,50*width/300,height/70);
   fill("red");
@@ -84,7 +84,7 @@ if(keyDown("t")&&carga==1){
 Rocha();
 carga=0;
 }
-if(frameCount%40==0){
+if(frameCount%30==0){
   carga=1;
 }
 if(pedroPalmeirense.isTouching(gRocha)){
@@ -107,11 +107,11 @@ CjBaianoRebaixado();
 
 pedroPalmeirense.y=ricardoFlamenguista.y;
 
-//if(keyDown("k")){vidasP=vidasP-1;}
+if(keyDown("k")){vidasP=vidasP-1;}
 
 if(vidasP==0){
 
-vitoriaSom.play();
+flamengoSom.play();
 estado=3;
 vidasP=vidasP-1;
 }
@@ -144,9 +144,8 @@ if(estado==1){
   gPedra.destroyEach();
   fill("red");
 textSize(30);
-pedroPalmeirense.visible=false;
 text("pressione espaço",width/20,height/2);
-
+pedroPalmeirense.visible=false;
 }
 if(keyDown("space")){
   pedroPalmeirense.visible=true;
@@ -193,7 +192,7 @@ cjBaianoRebaixado.addImage(cjBaianoRebaixadoImg);
 cjBaianoRebaixado.scale=width/2000;
 
 cjBaianoRebaixado.x=width*1.2;
-cjBaianoRebaixado.x=cjBaianoRebaixado.x-width/40;
+//cjBaianoRebaixado.x=cjBaianoRebaixado.x-width/40;
 cjBaianoRebaixado.lifetime=100;
 cjBaianoRebaixado.y=height/3;
 cjBaianoRebaixado.velocityX=-width/80;
