@@ -33,6 +33,9 @@ ricardoFlamenguista=createSprite(width/5,height-(height/3),50,400);
 ricardoFlamenguista.addImage(ricardoFlamenguistaImg);
 ricardoFlamenguista.scale=width/3500;
 
+
+
+
 pedroPalmeirense=createSprite(width-(width/5),height-(height/3),50,400);
 pedroPalmeirense.addImage(pedroPalmeirenseImg);
 //pedroPalmeirense.scale=0.62;
@@ -79,7 +82,6 @@ gCjBaianoRebaixado.destroyEach();
 }
 
 
-
 if(keyDown("t")&&carga==1){
 Rocha();
 carga=0;
@@ -105,11 +107,18 @@ textSize(width/25);
 CjBaianoRebaixado();
   }
 
-pedroPalmeirense.y=ricardoFlamenguista.y;
+//pedroPalmeirense.y=ricardoFlamenguista.y;
+if(ricardoFlamenguista.y>pedroPalmeirense.y){
+  pedroPalmeirense.y=pedroPalmeirense.y+height/80;
+}
+if(ricardoFlamenguista.y<pedroPalmeirense.y){
+  pedroPalmeirense.y=pedroPalmeirense.y-height/80;
+}
 
-if(keyDown("k")){vidasP=vidasP-1;}
 
-if(vidasP==0){
+//if(keyDown("k")){vidasP=vidasP-1;}
+
+if(vidasP<1){
 
 flamengoSom.play();
 estado=3;
