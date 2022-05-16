@@ -1,4 +1,4 @@
-var bg, pedroPalmeirense, ricardoFlamenguista,cjBaianoRebaixado,bispo, pedroPalmeirenseImg, ricardoFlamenguistaImg,cjBaianoRebaixadoImg,bispoImg,veioDaHavanSuperHeroiImg,bispoSom,gCjBaianoRebaixado, pedra,pedraImg,gPedra,rocha,gRocha,velorioSom,vitoriaSom,flamengoSom;
+var bg, pedroPalmeirense, ricardoFlamenguista,cjBaianoRebaixado,bispo, pedroPalmeirenseImg, ricardoFlamenguistaImg,cjBaianoRebaixadoImg,bispoImg,veioDaHavanSuperHeroiImg,bispoSom,gCjBaianoRebaixado, pedra,pedraImg,gPedra,rocha,gRocha,velorioSom,vitoriaSom,flamengoSom,dificil;
 var vidas = 3;
 var salvamentos=0;
 var estado=0;
@@ -33,7 +33,7 @@ ricardoFlamenguista=createSprite(width/5,height-(height/3),50,400);
 ricardoFlamenguista.addImage(ricardoFlamenguistaImg);
 ricardoFlamenguista.scale=width/3500;
 
-
+dificil=0;
 
 
 pedroPalmeirense=createSprite(width-(width/5),height-(height/3),50,400);
@@ -116,11 +116,12 @@ if(ricardoFlamenguista.y<pedroPalmeirense.y){
 }
 
 
-//if(keyDown("k")){vidasP=vidasP-1;}
+if(keyDown("p")){vidasP=vidasP-1;}
 
-if(vidasP<1){
 
-flamengoSom.play();
+if(vidasP==0){
+  flamengoSom.play();
+
 estado=3;
 vidasP=vidasP-1;
 }
@@ -132,6 +133,7 @@ if(estado==3){
   fill("green");
 textSize(width/80);
 text("voce venceu",width/2,height/2);
+
 }
 
 
@@ -186,7 +188,11 @@ if(estado==2){
 //gCjBaianoRebaixado.debug=true;
 
 
+if(keyDown("u")){
+  dificil=1;
+}
 
+  
 
 textSize(width/25);
 fill("red");
@@ -214,6 +220,9 @@ pedra.scale=width/5000
 pedra.velocityX=-width/50;
 pedra.lifetime=50
 gPedra.add(pedra);
+
+
+
 }
 function Rocha(){
   rocha=createSprite(ricardoFlamenguista.x,ricardoFlamenguista.y);
