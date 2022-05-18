@@ -13,7 +13,7 @@ cjBaianoRebaixadoImg=loadImage("cj baiano rebaixado.png");
 bg=loadImage("IMG_5180 (1).JPG");  
 bispoSom=loadSound("bispo.mp3");
 pedraImg=loadImage("pedra.png")
-velorioSom=loadSound("velorio.mp3");
+velorioSom=loadSound("vasco.mp3");
 vitoriaSom=loadSound("vitoria.mp3");
 flamengoSom=loadSound("comemorar.mp3");
 }
@@ -99,7 +99,7 @@ fill("yellow");
 textSize(width/25);
  text(vidas,width/20,height-height/20);
 
-  if(frameCount%50==0){
+  if(frameCount%45==0){
     Pedra();
   }
 
@@ -109,10 +109,10 @@ CjBaianoRebaixado();
 
 //pedroPalmeirense.y=ricardoFlamenguista.y;
 if(ricardoFlamenguista.y>pedroPalmeirense.y){
-  pedroPalmeirense.y=pedroPalmeirense.y+height/80;
+  pedroPalmeirense.y=pedroPalmeirense.y+height/85;
 }
 if(ricardoFlamenguista.y<pedroPalmeirense.y){
-  pedroPalmeirense.y=pedroPalmeirense.y-height/80;
+  pedroPalmeirense.y=pedroPalmeirense.y-height/85;
 }
 
 
@@ -167,7 +167,6 @@ estado=0;
 }
 if(vidas==0&&salvamentos==0){
  
- 
   velorioSom.play();
 
  
@@ -217,7 +216,7 @@ function Pedra(){
 pedra=createSprite(pedroPalmeirense.x,pedroPalmeirense.y);
 pedra.addImage(pedraImg);
 pedra.scale=width/5000
-pedra.velocityX=-width/50;
+pedra.velocityX=-width/40;
 pedra.lifetime=50
 gPedra.add(pedra);
 
