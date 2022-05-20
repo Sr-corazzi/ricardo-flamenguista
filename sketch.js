@@ -1,4 +1,4 @@
-var bg, pedroPalmeirense, ricardoFlamenguista,cjBaianoRebaixado,bispo, pedroPalmeirenseImg, ricardoFlamenguistaImg,cjBaianoRebaixadoImg,bispoImg,veioDaHavanSuperHeroiImg,bispoSom,gCjBaianoRebaixado, pedra,pedraImg,gPedra,rocha,gRocha,velorioSom,vitoriaSom,flamengoSom,dificil;
+var bg, pedroPalmeirense, ricardoFlamenguista,cjBaianoRebaixado,bispo, pedroPalmeirenseImg, ricardoFlamenguistaImg,cjBaianoRebaixadoImg,bispoImg,veioDaHavanSuperHeroiImg,bispoSom,gCjBaianoRebaixado, pedra,pedraImg,gPedra,rocha,gRocha,velorioSom,vitoriaSom,flamengoSom,dificil,assalto,assaltaImg,gAssalto;
 var vidas = 3;
 var salvamentos=0;
 var estado=0;
@@ -12,10 +12,11 @@ bispoImg=loadImage("bispo bombado.jpg");
 cjBaianoRebaixadoImg=loadImage("cj baiano rebaixado.png");  
 bg=loadImage("IMG_5180 (1).JPG");  
 bispoSom=loadSound("bispo.mp3");
-pedraImg=loadImage("pedra.png")
+pedraImg=loadImage("pedra.png");
 velorioSom=loadSound("vasco.mp3");
 vitoriaSom=loadSound("vitoria.mp3");
 flamengoSom=loadSound("comemorar.mp3");
+assaltaImg=loadImage("assaltantes.png");
 }
 
 function setup() {
@@ -28,6 +29,9 @@ bispo.visible=false;
   gCjBaianoRebaixado= new Group();
 gRocha=new Group();
 gPedra=new Group();
+
+
+gAssalto=new Group();
 
 ricardoFlamenguista=createSprite(width/5,height-(height/3),50,400);
 ricardoFlamenguista.addImage(ricardoFlamenguistaImg);
@@ -94,6 +98,18 @@ if(pedroPalmeirense.isTouching(gRocha)){
   gRocha.destroyEach();
 }
 
+if(frameCount%150==0){
+
+  assado();
+}
+if(gAssalto.isTouching(ricardoFlamenguista)){
+  vidas=vidas-1;
+ gAssalto.destroyEach();
+ gPedra.destroyEach();
+
+}
+
+
 stroke("white");
 fill("yellow");
 textSize(width/25);
@@ -135,7 +151,9 @@ textSize(width/80);
 text("voce venceu",width/2,height/2);
 
 }
-
+if(estado>1&&keyDown("r")){
+  reseta();
+}
 
 if(gPedra.isTouching(ricardoFlamenguista)){
   vidas=vidas-1;
@@ -143,7 +161,7 @@ if(gPedra.isTouching(ricardoFlamenguista)){
 }
 if(vidas<1&&salvamentos>0){
   bispoSom.play();
-  vidas=3
+  vidas=3;
   bispo.visible=true;
   pedroPalmeirense.y=height/2;
 estado=1;
@@ -161,9 +179,10 @@ pedroPalmeirense.visible=false;
 if(keyDown("space")){
   pedroPalmeirense.visible=true;
   bispo.visible=false;
-  gPedra.Setlifetime=100;
+  gPedra.setLifetimeEach(100);
   pedroPalmeirense.y=ricardoFlamenguista.y;
 estado=0;
+bispoSom.stop();
 }
 if(vidas==0&&salvamentos==0){
  
@@ -178,6 +197,7 @@ if(estado==2){
   textSize(width/25);
   text("você morreu",width/2,height/2);
   morte();
+  gAssalto.destroyEach();
 }
 
 
@@ -185,17 +205,22 @@ if(estado==2){
 //ricardoFlamenguista.debug=true;
 //gPedra.debug=true;
 //gCjBaianoRebaixado.debug=true;
+if(estado>1){
+  textSize(width/25);
+  fill("cyan");
+text("pressione R para resetar",width/2,height/3);
 
 
-if(keyDown("u")){
-  dificil=1;
+}
+if(estado>0){
+  gAssalto.destroyEach();
 }
 
   
 
 textSize(width/25);
 fill("red");
-text(salvamentos,width/20,height/20)
+text(salvamentos,width/20,height/20);
 drawSprites();
 }
 
@@ -215,9 +240,9 @@ gCjBaianoRebaixado.add(cjBaianoRebaixado);
 function Pedra(){
 pedra=createSprite(pedroPalmeirense.x,pedroPalmeirense.y);
 pedra.addImage(pedraImg);
-pedra.scale=width/5000
-pedra.velocityX=-width/40;
-pedra.lifetime=50
+pedra.scale=width/5000;
+pedra.velocityX=-width/60;
+pedra.lifetime=50;
 gPedra.add(pedra);
 
 
@@ -226,9 +251,9 @@ gPedra.add(pedra);
 function Rocha(){
   rocha=createSprite(ricardoFlamenguista.x,ricardoFlamenguista.y);
   rocha.addImage(pedraImg);
-  rocha.scale=width/5000
+  rocha.scale=width/5000;
   rocha.velocityX=width/30;
-  rocha.lifetime=50
+  rocha.lifetime=50;
   gRocha.add(rocha);
   }
   function morte(){
@@ -239,4 +264,27 @@ gCjBaianoRebaixado.destroyEach();
 gRocha.destroyEach();
 ricardoFlamenguista.visible=false;
 
+  }
+
+  function assado(){
+    assalto=createSprite(40,0);
+    assalto.x=random(width/2,width/15);
+  assalto.addImage(assaltaImg);
+  assalto.scale=width/2000;
+  assalto.velocityY=height/100;
+  assalto.lifetime=300;
+  gAssalto.add(assalto);
+  }
+
+  function reseta(){
+    ricardoFlamenguista.visible=true;
+    pedroPalmeirense.visible=true;
+    vidasP=50;
+    vidas=3;
+    salvamentos=0;
+  estado=0;
+  flamengoSom.stop();
+  velorioSom.stop();
+  ricardoFlamenguista.y=height-(height/3);
+  ricardoFlamenguista.x=width/5;
   }
