@@ -98,7 +98,7 @@ if(pedroPalmeirense.isTouching(gRocha)){
   gRocha.destroyEach();
 }
 
-if(frameCount%150==0){
+if(frameCount%250==0){
 
   assado();
 }
